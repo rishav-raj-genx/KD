@@ -1,140 +1,153 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const SLIDES = [
   {
     id: 1,
     image: 'https://kdmachineries.com/images/slider/1758188304_1.webp',
+    alt: 'K D Machineries — Auto Garage Equipment & Workshop Solutions',
   },
   {
     id: 2,
     image: 'https://kdmachineries.com/images/slider/1758188311_2.webp',
+    alt: 'K D Machineries — Industrial Equipment & Machinery',
   },
   {
     id: 3,
     image: 'https://kdmachineries.com/images/slider/1758188320_3.webp',
+    alt: 'K D Machineries — Compressed Air & Pneumatic Solutions',
   },
   {
     id: 4,
     image: 'https://kdmachineries.com/images/slider/1758188328_4.webp',
+    alt: 'K D Machineries — Vehicle Lifting & Washing Equipment',
   },
   {
     id: 5,
     image: 'https://kdmachineries.com/images/slider/1758188337_5.webp',
-  }
+    alt: 'K D Machineries — Piping & Workshop Infrastructure',
+  },
 ];
+
+const AUTOPLAY_INTERVAL = 5000;
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    }, 5000);
-    return () => clearInterval(timer);
+  const goTo = useCallback((index: number) => {
+    setCurrentSlide((index + SLIDES.length) % SLIDES.length);
   }, []);
 
+  const next = useCallback(() => goTo(currentSlide + 1), [currentSlide, goTo]);
+  const prev = useCallback(() => goTo(currentSlide - 1), [currentSlide, goTo]);
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(next, AUTOPLAY_INTERVAL);
+    return () => clearInterval(timer);
+  }, [isPaused, next]);
+
+  // Keyboard accessibility
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    },
+    [prev, next],
+  );
+
+  // Touch handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+    setIsPaused(true);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
+  const handleTouchEnd = () => {
+    const threshold = 50;
+    if (touchDeltaX.current < -threshold) next();
+    else if (touchDeltaX.current > threshold) prev();
+    setIsPaused(false);
+  };
+
   return (
-    <section className="relative w-full min-h-[90vh] md:min-h-[800px] flex items-center bg-surface-container-lowest overflow-hidden pt-20">
-      {/* Dynamic Background Image Slider */}
-      {SLIDES.map((slide, index) => (
-        <div 
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+    <section
+      className="relative w-full bg-background overflow-hidden"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Hero image carousel"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Aspect-ratio container — adapts to viewport */}
+      {/* Desktop: ~16:6.5 ratio to match original KD banners   Mobile: taller to avoid squishing */}
+      <div className="relative w-full pt-[65%] sm:pt-[50%] md:pt-[42%] lg:pt-[38%] mt-[120px] sm:mt-[120px]">
+        {/* Slide images */}
+        {SLIDES.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Slide ${index + 1} of ${SLIDES.length}`}
+            aria-hidden={index !== currentSlide}
+          >
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="absolute inset-0 w-full h-full object-cover object-center select-none"
+              draggable={false}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+
+        {/* Subtle bottom gradient for page flow */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
+
+        {/* Navigation arrows — always accessible */}
+        <button
+          onClick={prev}
+          className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-surface-container-lowest/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Previous slide"
         >
-          <img 
-            src={slide.image} 
-            alt="K D Machineries Equipment" 
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Elegant dark gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
-        </div>
-      ))}
+          <span className="material-symbols-outlined text-[22px]">chevron_left</span>
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-surface-container-lowest/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Next slide"
+        >
+          <span className="material-symbols-outlined text-[22px]">chevron_right</span>
+        </button>
 
-      {/* Decorative ambient lighting */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-container/20 blur-[120px] rounded-full pointer-events-none mix-blend-screen"></div>
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* Left Side: Strong B2B Copy */}
-        <div className="lg:col-span-7 flex flex-col space-y-6 lg:pr-10">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center px-2 py-1 rounded bg-primary/10 border border-primary/20 text-primary text-xs uppercase tracking-widest font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2 animate-pulse"></span>
-              Authorized Distributor
-            </span>
-            <span className="text-outline-variant text-sm">|</span>
-            <span className="text-xs text-secondary uppercase tracking-widest font-semibold">Since 1968</span>
-          </div>
-          
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface uppercase tracking-tight leading-[1.1] font-display-lg">
-              Premium Industrial & <br />
-              <span className="text-primary-container bg-clip-text">Workshop Equipment</span>
-            </h1>
-            <p className="text-base md:text-lg text-secondary max-w-2xl font-body-lg leading-relaxed">
-              Leading supplier of auto garage equipment, compressed air systems, and pneumatic solutions in Guwahati, Assam. Serving automotive businesses across Northeast India with uncompromising quality.
-            </p>
-          </div>
-
-          {/* Key Value Props */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-            {[
-              { icon: 'verified', title: 'Certified', desc: 'Equipment' },
-              { icon: 'support_agent', title: 'Expert', desc: 'Support' },
-              { icon: 'precision_manufacturing', title: 'Precision', desc: 'Engineered' },
-              { icon: 'handyman', title: 'Service', desc: 'Network' },
-            ].map((prop, idx) => (
-              <div key={idx} className="bg-surface-container-low/80 backdrop-blur-sm border border-outline-variant/10 p-4 rounded-xl flex flex-col items-start transform transition-transform hover:-translate-y-1 hover:bg-surface-container">
-                <span className={`material-symbols-outlined text-[24px] mb-2 ${idx % 2 === 0 ? 'text-primary' : 'text-tertiary'}`}>
-                  {prop.icon}
-                </span>
-                <span className="text-xs uppercase text-on-surface font-bold tracking-wider">{prop.title}</span>
-                <span className="text-xs text-secondary mt-0.5">{prop.desc}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 pt-6">
-            <a href="tel:+919365246256" className="px-8 py-4 rounded-lg bg-primary-container hover:bg-inverse-primary text-on-primary text-sm uppercase tracking-widest font-bold flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(255,84,71,0.3)] hover:shadow-[0_0_30px_rgba(255,84,71,0.5)] hover:-translate-y-0.5">
-              <span className="material-symbols-outlined text-[20px]">call</span>
-              Contact Us Today
-            </a>
-            <a href="#products" className="px-8 py-4 rounded-lg bg-surface-container-high border border-outline-variant/30 hover:bg-surface-bright text-on-surface text-sm uppercase tracking-widest font-bold flex items-center gap-2 transition-all hover:-translate-y-0.5">
-              Explore Products
-              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Right Side: Visual Carousel Indicator / Focus Area */}
-        <div className="lg:col-span-5 relative hidden lg:flex flex-col items-end justify-end h-full mt-20">
-           {/* Custom Slide Controls */}
-           <div className="bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/20 p-4 rounded-2xl flex flex-col gap-4">
-             <div className="flex items-center gap-3">
-               {SLIDES.map((_, idx) => (
-                 <button
-                   key={idx}
-                   onClick={() => setCurrentSlide(idx)}
-                   className={`h-1.5 transition-all duration-300 rounded-full ${currentSlide === idx ? 'w-8 bg-primary-container' : 'w-2 bg-secondary-container hover:bg-outline'}`}
-                   aria-label={`Go to slide ${idx + 1}`}
-                 />
-               ))}
-             </div>
-             <div className="flex gap-2 justify-end">
-               <button 
-                 onClick={() => setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length)}
-                 className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary-container hover:text-on-primary transition-colors border border-outline-variant/20"
-               >
-                 <span className="material-symbols-outlined">chevron_left</span>
-               </button>
-               <button 
-                 onClick={() => setCurrentSlide((prev) => (prev + 1) % SLIDES.length)}
-                 className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-primary-container hover:text-on-primary transition-colors border border-outline-variant/20"
-               >
-                 <span className="material-symbols-outlined">chevron_right</span>
-               </button>
-             </div>
-           </div>
+        {/* Slide indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
+          {SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goTo(idx)}
+              className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                currentSlide === idx
+                  ? 'w-8 h-2 bg-primary-container'
+                  : 'w-2 h-2 bg-on-surface/30 hover:bg-on-surface/60'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+              aria-current={currentSlide === idx ? 'true' : undefined}
+            />
+          ))}
         </div>
       </div>
     </section>

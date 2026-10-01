@@ -39,22 +39,14 @@ const Header = () => {
 
       {/* Main Navbar */}
       <div className="w-full max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Logo Area */}
-        <a href="/" className="flex items-center gap-3 group">
+        <a href="/" className="flex items-center group">
           <img 
             alt="K D Machineries" 
             className="h-12 w-auto object-contain transition-transform group-hover:scale-105" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuD87vkq07lDrEEILSSdkgAbYwADEaqqJN6Ed041zgeHuYKaSk8Y231iAy4YH-5PImxBaACyZhbe3NRKe1W7C4KHPUeGILLhmrNjfs4boz9_qCYgS1wcF_bjQA1YinIBAyi9g8oGvWfqpPSg2g6NpTPwl7s0D_2gS_JuyUX0tPBUOtidJp1odfShar4Ahh-z62ppisyc1AR5G9h-56UPO0N3jfChMddBxV6WO3TF7gsflpOYOgm7outwacvWTThchc36Qg" 
           />
-          <div className="hidden sm:flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-on-surface leading-none uppercase font-display-lg">
-              K D MACHINERIES
-            </span>
-            <span className="text-[10px] text-primary tracking-widest uppercase mt-1 font-semibold">
-              Automobile & Workshop Solutions
-            </span>
-          </div>
         </a>
+
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 h-full">
