@@ -8,8 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-container": "#FF1617",
-        "brand-red": "#FF1617",
+        "primary-container": "var(--kd-red)",
+        "kd-red": "var(--kd-red)",
         "background": "#0e141a",
         "surface-container-lowest": "#090f15",
         "on-background": "#dde3ec",
@@ -27,7 +27,7 @@ export default {
         "surface-dim": "#0e141a",
         "on-primary": "#ffffff",
         "on-tertiary": "#003350",
-        "tertiary-container": "#FF1617",
+        "tertiary-container": "var(--kd-red)",
         "inverse-primary": "#D91315",
         "secondary-fixed": "#d4e4fa",
         "tertiary-fixed": "#cce5ff",
@@ -56,6 +56,15 @@ export default {
         "error": "#ffb4ab",
         "on-secondary-fixed": "#0d1c2d",
         "on-primary-fixed": "#410001"
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' }
+        }
+      },
+      animation: {
+        marquee: 'marquee 25s linear infinite'
       },
       borderRadius: {
         DEFAULT: "0.125rem",

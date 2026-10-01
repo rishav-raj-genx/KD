@@ -7,6 +7,9 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --kd-red: #FF1617;
+  }
   html, body {
     margin: 0;
     padding: 0;

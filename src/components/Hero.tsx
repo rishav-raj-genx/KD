@@ -91,7 +91,7 @@ const Hero = () => {
     >
       {/* Contained carousel module — matches content width */}
       <div className="w-full max-w-7xl mx-auto px-4">
-        <div className="relative w-full rounded-xl overflow-hidden bg-surface-container-lowest shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
+        <div className="relative w-full rounded-xl overflow-hidden bg-surface-container-lowest shadow-[0_4px_30px_rgba(0,0,0,0.4)] flex flex-col">
           {/* Aspect ratio: ~16:9 on mobile, ~16:7 on desktop — shows full banner content */}
           <div className="relative w-full pt-[56%] md:pt-[46%] lg:pt-[43.75%]">
             {SLIDES.map((slide, index) => (
@@ -118,35 +118,35 @@ const Hero = () => {
             {/* Navigation arrows */}
             <button
               onClick={prev}
-              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-brand-red hover:text-white hover:border-brand-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-kd-red hover:text-white hover:border-kd-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
               aria-label="Previous slide"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_left</span>
             </button>
             <button
               onClick={next}
-              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-brand-red hover:text-white hover:border-brand-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-kd-red hover:text-white hover:border-kd-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
               aria-label="Next slide"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_right</span>
             </button>
+          </div>
 
-            {/* Slide indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
-              {SLIDES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => goTo(idx)}
-                  className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red ${
-                    currentSlide === idx
-                      ? 'w-7 h-2 bg-brand-red'
-                      : 'w-2 h-2 bg-on-surface/30 hover:bg-on-surface/60'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  aria-current={currentSlide === idx ? 'true' : undefined}
-                />
-              ))}
-            </div>
+          {/* Slide indicators - Placed BELOW the image on dark background */}
+          <div className="w-full flex items-center justify-center gap-2 py-4 bg-surface-container-lowest">
+            {SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goTo(idx)}
+                className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red ${
+                  currentSlide === idx
+                    ? 'w-7 h-2 bg-kd-red'
+                    : 'w-2 h-2 bg-outline-variant/50 hover:bg-outline-variant/80'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+                aria-current={currentSlide === idx ? 'true' : undefined}
+              />
+            ))}
           </div>
         </div>
       </div>
