@@ -8,7 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary-container": "#ff5447",
+        "primary-container": "#FF1617",
+        "brand-red": "#FF1617",
         "background": "#0e141a",
         "surface-container-lowest": "#090f15",
         "on-background": "#dde3ec",
@@ -24,10 +25,10 @@ export default {
         "surface-bright": "#343a41",
         "surface-container-high": "#252b31",
         "surface-dim": "#0e141a",
-        "on-primary": "#690003",
+        "on-primary": "#ffffff",
         "on-tertiary": "#003350",
-        "tertiary-container": "#3898d7",
-        "inverse-primary": "#c0030e",
+        "tertiary-container": "#FF1617",
+        "inverse-primary": "#D91315",
         "secondary-fixed": "#d4e4fa",
         "tertiary-fixed": "#cce5ff",
         "tertiary-fixed-dim": "#91cdff",

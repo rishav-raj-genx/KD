@@ -12,27 +12,29 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-surface-container-lowest/95 backdrop-blur-md shadow-md' : 'bg-surface-container-lowest'}`}>
-      {/* Top Bar - Hidden on mobile, visible on tablet+ */}
+      {/* Top Bar */}
       <div className={`bg-surface-container-low transition-all duration-300 overflow-hidden ${isScrolled ? 'h-0 opacity-0' : 'h-10 opacity-100'}`}>
         <div className="w-full max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+          {/* Left: ESTD 1968 */}
+          <div className="flex items-center">
+            <span className="font-semibold text-brand-red text-xs tracking-widest uppercase">ESTD 1968</span>
+          </div>
+          {/* Right: Contact info — progressively revealed */}
           <div className="flex items-center gap-4 text-xs font-medium text-secondary">
             <div className="flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[14px] text-primary">call</span>
+              <span className="material-symbols-outlined text-[14px] text-brand-red">call</span>
               <span>+91-9365246256 / +91-9435706902</span>
             </div>
             <span className="text-outline-variant hidden sm:inline">|</span>
             <div className="hidden sm:flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[14px] text-primary">mail</span>
+              <span className="material-symbols-outlined text-[14px] text-brand-red">mail</span>
               <span>info@kdmachineries.com</span>
             </div>
             <span className="text-outline-variant hidden md:inline">|</span>
             <div className="hidden md:flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[14px] text-primary">location_on</span>
+              <span className="material-symbols-outlined text-[14px] text-brand-red">location_on</span>
               <span>Guwahati, Assam - 781009</span>
             </div>
-          </div>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="font-semibold text-tertiary tracking-wider">ESTD 1968</span>
           </div>
         </div>
       </div>

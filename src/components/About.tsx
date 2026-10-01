@@ -65,7 +65,7 @@ const About = () => {
             <div className="absolute bottom-0 left-0 w-full p-8 flex justify-between items-end">
                <div className="bg-surface-container-lowest/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant/20 shadow-lg">
                  <div className="flex items-center gap-2">
-                   <span className="material-symbols-outlined text-tertiary">engineering</span>
+                   <span className="material-symbols-outlined text-brand-red">engineering</span>
                    <span className="text-sm font-bold text-on-surface uppercase tracking-wider">Expert Team</span>
                  </div>
                </div>

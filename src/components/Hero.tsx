@@ -77,7 +77,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative w-full bg-background overflow-hidden"
+      className="relative w-full bg-background overflow-hidden pt-[120px]"
       role="region"
       aria-roledescription="carousel"
       aria-label="Hero image carousel"
@@ -89,65 +89,65 @@ const Hero = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Aspect-ratio container — adapts to viewport */}
-      {/* Desktop: ~16:6.5 ratio to match original KD banners   Mobile: taller to avoid squishing */}
-      <div className="relative w-full pt-[65%] sm:pt-[50%] md:pt-[42%] lg:pt-[38%] mt-[120px] sm:mt-[120px]">
-        {/* Slide images */}
-        {SLIDES.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`Slide ${index + 1} of ${SLIDES.length}`}
-            aria-hidden={index !== currentSlide}
-          >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              className="absolute inset-0 w-full h-full object-cover object-center select-none"
-              draggable={false}
-              loading={index === 0 ? 'eager' : 'lazy'}
-            />
-          </div>
-        ))}
+      {/* Contained carousel module — matches content width */}
+      <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="relative w-full rounded-xl overflow-hidden bg-surface-container-lowest shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
+          {/* Aspect ratio: ~16:9 on mobile, ~16:7 on desktop — shows full banner content */}
+          <div className="relative w-full pt-[56%] md:pt-[46%] lg:pt-[43.75%]">
+            {SLIDES.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Slide ${index + 1} of ${SLIDES.length}`}
+                aria-hidden={index !== currentSlide}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  className="absolute inset-0 w-full h-full object-contain object-center select-none"
+                  draggable={false}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
 
-        {/* Subtle bottom gradient for page flow */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-20 pointer-events-none" />
-
-        {/* Navigation arrows — always accessible */}
-        <button
-          onClick={prev}
-          className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-surface-container-lowest/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label="Previous slide"
-        >
-          <span className="material-symbols-outlined text-[22px]">chevron_left</span>
-        </button>
-        <button
-          onClick={next}
-          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-container-lowest/60 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-surface-container-lowest/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          aria-label="Next slide"
-        >
-          <span className="material-symbols-outlined text-[22px]">chevron_right</span>
-        </button>
-
-        {/* Slide indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5">
-          {SLIDES.map((_, idx) => (
+            {/* Navigation arrows */}
             <button
-              key={idx}
-              onClick={() => goTo(idx)}
-              className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                currentSlide === idx
-                  ? 'w-8 h-2 bg-primary-container'
-                  : 'w-2 h-2 bg-on-surface/30 hover:bg-on-surface/60'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-              aria-current={currentSlide === idx ? 'true' : undefined}
-            />
-          ))}
+              onClick={prev}
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-brand-red hover:text-white hover:border-brand-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+              aria-label="Previous slide"
+            >
+              <span className="material-symbols-outlined text-[20px]">chevron_left</span>
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-lowest/70 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-on-surface hover:bg-brand-red hover:text-white hover:border-brand-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+              aria-label="Next slide"
+            >
+              <span className="material-symbols-outlined text-[20px]">chevron_right</span>
+            </button>
+
+            {/* Slide indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+              {SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => goTo(idx)}
+                  className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red ${
+                    currentSlide === idx
+                      ? 'w-7 h-2 bg-brand-red'
+                      : 'w-2 h-2 bg-on-surface/30 hover:bg-on-surface/60'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  aria-current={currentSlide === idx ? 'true' : undefined}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
