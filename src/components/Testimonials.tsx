@@ -35,7 +35,7 @@ const Testimonials = () => {
         {/* Testimonials Grid & CTA */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {TESTIMONIALS.map((testimonial) => (
-            <div key={testimonial.id} className="bg-surface-container-lowest border border-outline-variant/10 rounded-sm p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+            <div key={testimonial.id} className="bg-surface-container-lowest border border-outline-variant/10 rounded-md p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
               <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-outline-variant/10">
                 <img 
                   src={testimonial.image} 
@@ -51,7 +51,7 @@ const Testimonials = () => {
           ))}
 
           {/* CTA Box */}
-          <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-sm">
+          <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-md">
             <h3 className="text-2xl font-bold uppercase mb-4 leading-tight">
               Do you need any<br />help?
             </h3>

@@ -57,18 +57,18 @@ const Footer = () => {
             <h4 className="text-sm uppercase tracking-widest font-bold text-on-surface">Reach Us</h4>
             <div className="space-y-4 text-sm text-secondary">
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-primary text-[20px] shrink-0">location_on</span>
+                <span className="material-symbols-outlined text-white hover:text-kd-red transition-colors text-[20px] shrink-0 cursor-pointer">location_on</span>
                 <span className="leading-relaxed">46, KRB Road, Bharalumukh, <br /> Guwahati, Assam - 781009 India</span>
               </div>
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-primary text-[20px] shrink-0">call</span>
+                <span className="material-symbols-outlined text-white hover:text-kd-red transition-colors text-[20px] shrink-0 cursor-pointer">call</span>
                 <div className="flex flex-col gap-1">
                   <a href="tel:+919365246256" className="hover:text-on-surface transition-colors">+91-9365246256</a>
                   <a href="tel:+919435706902" className="hover:text-on-surface transition-colors">+91-9435706902</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-primary text-[20px] shrink-0">mail</span>
+                <span className="material-symbols-outlined text-white hover:text-kd-red transition-colors text-[20px] shrink-0 cursor-pointer">mail</span>
                 <div className="flex flex-col gap-1">
                   <a href="mailto:info@kdmachineries.com" className="hover:text-on-surface transition-colors">info@kdmachineries.com</a>
                   <a href="mailto:kdmachineries@gmail.com" className="hover:text-on-surface transition-colors">kdmachineries@gmail.com</a>

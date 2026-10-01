@@ -68,39 +68,30 @@ const Products = () => {
                 <a 
                   key={product.id} 
                   href={`/product/${product.id}`} 
-                  className="group flex flex-col bg-surface-container-low border border-outline-variant/10 rounded-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-kd-red/50 hover:-translate-y-1"
+                  className="group flex flex-col bg-surface-container-low border border-outline-variant/10 rounded-md overflow-hidden p-4 transition-all duration-300 hover:border-kd-red"
                 >
-                  {/* Product Image Area */}
-                  <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden border-b border-outline-variant/5">
+                  {/* BRAND TAG - Above the image */}
+                  <div className="mb-3">
+                    <span className="inline-block text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-sm bg-surface-container-highest text-on-surface group-hover:text-kd-red transition-colors">
+                      {product.category === 'unipro' ? 'UNIPRO' : product.category === 'ats' ? 'ATS ELGI' : 'OTHERS'}
+                    </span>
+                  </div>
+
+                  {/* FULL PRODUCT IMAGE - Contained with padding */}
+                  <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden rounded-md mb-4">
                     <img 
                       src="/image.png" 
                       alt={product.name} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.02] group-hover:brightness-[1.02]"
                     />
-                    
-                    {/* Compact Brand Badge */}
-                    <div className="absolute top-2 left-2 z-20">
-                      <span className={`text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-sm shadow-sm ${
-                        product.category === 'unipro' 
-                          ? 'bg-surface-container-highest text-on-surface'
-                          : product.category === 'ats' 
-                            ? 'bg-on-surface text-surface' 
-                            : 'bg-surface-variant text-on-surface'
-                      }`}>
-                        {product.category === 'unipro' ? 'UNIPRO' : product.category === 'ats' ? 'ATS ELGI' : 'OTHERS'}
-                      </span>
-                    </div>
                   </div>
 
-                  {/* Product Details Area */}
-                  <div className="p-4 flex flex-col flex-grow bg-surface-container-lowest relative">
-                    <h3 className="text-sm font-bold text-on-surface mb-2 group-hover:text-kd-red transition-colors line-clamp-2">
+                  {/* PRODUCT NAME & ARROW */}
+                  <div className="flex items-center justify-between mt-auto">
+                    <h3 className="text-sm font-bold text-on-surface group-hover:text-kd-red transition-colors line-clamp-2 pr-2">
                       {product.name}
                     </h3>
-                    <div className="mt-auto pt-3 flex items-center justify-between border-t border-outline-variant/10">
-                      <span className="w-6 h-1 bg-kd-red/20 group-hover:bg-kd-red transition-colors"></span>
-                      <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red transition-colors">arrow_forward</span>
-                    </div>
+                    <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red transition-colors shrink-0">arrow_forward</span>
                   </div>
                 </a>
               ))}

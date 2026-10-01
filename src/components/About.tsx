@@ -10,10 +10,6 @@ const About = () => {
         {/* Left Side: Content */}
         <div className="lg:col-span-6 flex flex-col space-y-8">
           <div className="flex flex-col space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-[2px] bg-primary"></span>
-              <span className="text-sm uppercase tracking-widest text-primary font-bold">About Us</span>
-            </div>
             <h2 className="text-4xl lg:text-5xl font-display-lg text-on-surface uppercase tracking-tight leading-[1.1]">
               About <br />
               <span className="text-tertiary-container">K D Machineries</span>
@@ -31,7 +27,7 @@ const About = () => {
 
           <div className="flex items-center gap-6 py-4">
             <div className="flex items-center gap-4 bg-surface-container-low p-5 rounded-2xl border border-outline-variant/10 shadow-sm transition-transform hover:-translate-y-1">
-              <div className="text-4xl font-display-lg font-bold text-primary">
+              <div className="text-4xl font-display-lg font-bold text-kd-red">
                 1968
               </div>
               <div className="flex flex-col border-l border-outline-variant/20 pl-4">
