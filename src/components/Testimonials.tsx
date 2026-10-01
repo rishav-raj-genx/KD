@@ -1,3 +1,5 @@
+import { ScrollReveal } from './ScrollReveal';
+
 const TESTIMONIALS = [
   {
     id: 1,
@@ -25,43 +27,50 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="mb-12">
+        <ScrollReveal variant="up" className="mb-12">
           <h2 className="text-3xl font-display-lg text-on-surface font-bold">
             Testimonials
           </h2>
           <div className="w-16 h-1 bg-kd-red mt-4"></div>
-        </div>
+        </ScrollReveal>
 
         {/* Testimonials Grid & CTA */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {TESTIMONIALS.map((testimonial) => (
-            <div key={testimonial.id} className="bg-surface-container-lowest border border-outline-variant/10 rounded-md p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-outline-variant/10">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h4 className="text-lg font-bold text-on-surface mb-4">{testimonial.name}</h4>
-              <p className="text-secondary text-sm font-body-md leading-relaxed">
-                {testimonial.text}
-              </p>
-            </div>
-          ))}
+          {TESTIMONIALS.map((testimonial, index) => {
+            const variant = index === 0 ? 'left' : index === 2 ? 'right' : 'up';
+            return (
+              <ScrollReveal key={testimonial.id} variant={variant} delay={index * 100} className="h-full">
+                <div className="bg-surface-container-lowest border border-outline-variant/10 rounded-md p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
+                  <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-outline-variant/10 shrink-0">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h4 className="text-lg font-bold text-on-surface mb-4">{testimonial.name}</h4>
+                  <p className="text-secondary text-sm font-body-md leading-relaxed mt-auto">
+                    {testimonial.text}
+                  </p>
+                </div>
+              </ScrollReveal>
+            );
+          })}
 
           {/* CTA Box */}
-          <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-md">
-            <h3 className="text-2xl font-bold uppercase mb-4 leading-tight">
-              Do you need any<br />help?
-            </h3>
-            <p className="text-white/90 text-sm mb-8 leading-relaxed">
-              Need expert help? We're here to support, guide, and provide reliable solutions for your needs!
-            </p>
-            <a href="/contact" className="px-6 py-3 bg-white text-on-surface text-sm font-bold uppercase tracking-wide text-center transition-colors hover:bg-surface-container-low">
-              Contact Now
-            </a>
-          </div>
+          <ScrollReveal variant="right" delay={300} className="h-full">
+            <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-md">
+              <h3 className="text-2xl font-bold uppercase mb-4 leading-tight">
+                Do you need any<br />help?
+              </h3>
+              <p className="text-white/90 text-sm mb-8 leading-relaxed">
+                Need expert help? We're here to support, guide, and provide reliable solutions for your needs!
+              </p>
+              <a href="/contact" className="px-6 py-3 bg-white text-black text-sm font-bold uppercase tracking-wide text-center transition-colors hover:bg-neutral-100 mt-auto rounded">
+                Contact Now
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
 
       </div>

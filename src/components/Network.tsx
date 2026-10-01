@@ -1,3 +1,5 @@
+import { ScrollReveal } from './ScrollReveal';
+
 const CLIENTS = [
   { id: 1, img: 'https://kdmachineries.com/images/partner/1751283958_client1.png' },
   { id: 2, img: 'https://kdmachineries.com/images/partner/1751283964_client2.png' },
@@ -13,7 +15,7 @@ const Network = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-16">
         
         {/* Left Column */}
-        <div className="md:w-1/3 flex flex-col space-y-3 text-center md:text-left shrink-0">
+        <ScrollReveal variant="left" className="md:w-1/3 flex flex-col space-y-3 text-center md:text-left shrink-0">
           <h2 className="text-2xl md:text-3xl font-display-lg text-on-surface uppercase tracking-tight font-bold">
             Our Workshop <br />
             <span className="text-kd-red">Network</span>
@@ -21,10 +23,10 @@ const Network = () => {
           <p className="text-sm text-secondary font-body-md max-w-xs mx-auto md:mx-0">
             Trusted by top automobile brands and service centers across Northeast India.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Right Column: Seamless Marquee */}
-        <div className="md:w-2/3 w-full overflow-hidden relative">
+        <ScrollReveal variant="right" className="md:w-2/3 w-full overflow-hidden relative">
           {/* Gradient masks for smooth fading on edges */}
           <div className="absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
           <div className="absolute inset-y-0 right-0 w-12 md:w-24 bg-gradient-to-l from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
@@ -53,7 +55,7 @@ const Network = () => {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>

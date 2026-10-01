@@ -1,5 +1,7 @@
 
 
+import { ScrollReveal } from './ScrollReveal';
+
 const CATEGORIES = [
   { id: 'ats', name: 'ATS ELGI Products' },
   { id: 'unipro', name: 'UNIPRO Products' },
@@ -50,7 +52,7 @@ const Products = () => {
           <div className="max-w-7xl mx-auto">
             
             {/* Section Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+            <ScrollReveal variant="up" className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
               <div className="flex flex-col">
                 <h2 className="text-3xl font-display-lg text-on-surface font-bold tracking-tight">
                   {cat.name}
@@ -60,41 +62,54 @@ const Products = () => {
               <div className="max-w-xl text-secondary text-sm font-body-md leading-relaxed">
                 We offer a diverse range of quality products including compressor oil, nitrogen tyre inflators, and essential machinery accessories, ensuring durability, reliability, and precision for industries.
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Product Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {PRODUCTS.filter(p => p.category === cat.id).map((product) => (
-                <a 
-                  key={product.id} 
-                  href={`/product/${product.id}`} 
-                  className="group flex flex-col bg-surface-container-low border border-outline-variant/10 rounded-md overflow-hidden p-4 transition-all duration-300 hover:border-kd-red"
-                >
-                  {/* BRAND TAG - Above the image */}
-                  <div className="mb-3">
-                    <span className="inline-block text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-sm bg-surface-container-highest text-on-surface group-hover:text-kd-red transition-colors">
-                      {product.category === 'unipro' ? 'UNIPRO' : product.category === 'ats' ? 'ATS ELGI' : 'OTHERS'}
-                    </span>
-                  </div>
+              {PRODUCTS.filter(p => p.category === cat.id).map((product, index) => {
+                const colIndex = index % 4;
+                let variant: 'left' | 'right' | 'up' = 'up';
+                if (colIndex === 0) variant = 'left';
+                else if (colIndex === 3) variant = 'right';
 
-                  {/* FULL PRODUCT IMAGE - Contained with padding */}
-                  <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden rounded-md mb-4">
-                    <img 
-                      src="/image.png" 
-                      alt={product.name} 
-                      className="w-full h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.02] group-hover:brightness-[1.02]"
-                    />
-                  </div>
+                return (
+                  <ScrollReveal 
+                    key={product.id} 
+                    variant={variant} 
+                    delay={colIndex * 100}
+                    className="h-full flex flex-col"
+                  >
+                    <a 
+                      href={`/product/${product.id}`} 
+                      className="group flex flex-col bg-background border border-outline-variant/10 rounded-md overflow-hidden p-4 transition-all duration-300 hover:border-kd-red h-full"
+                    >
+                      {/* BRAND TAG - Above the image */}
+                      <div className="mb-3">
+                        <span className="inline-block text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-sm bg-surface-container-highest text-on-surface group-hover:text-kd-red transition-colors">
+                          {product.category === 'unipro' ? 'UNIPRO' : product.category === 'ats' ? 'ATS ELGI' : 'OTHERS'}
+                        </span>
+                      </div>
 
-                  {/* PRODUCT NAME & ARROW */}
-                  <div className="flex items-center justify-between mt-auto">
-                    <h3 className="text-sm font-bold text-on-surface group-hover:text-kd-red transition-colors line-clamp-2 pr-2">
-                      {product.name}
-                    </h3>
-                    <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red transition-colors shrink-0">arrow_forward</span>
-                  </div>
-                </a>
-              ))}
+                      {/* FULL PRODUCT IMAGE - Contained with padding */}
+                      <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden rounded-md mb-4">
+                        <img 
+                          src="/image.png" 
+                          alt={product.name} 
+                          className="w-full h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.02] group-hover:brightness-[1.02]"
+                        />
+                      </div>
+
+                      {/* PRODUCT NAME & ARROW */}
+                      <div className="flex items-center justify-between mt-auto">
+                        <h3 className="text-sm font-bold text-on-surface group-hover:text-kd-red transition-colors line-clamp-2 pr-2">
+                          {product.name}
+                        </h3>
+                        <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red transition-colors shrink-0">arrow_forward</span>
+                      </div>
+                    </a>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </div>

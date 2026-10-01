@@ -1,3 +1,5 @@
+import { ScrollReveal } from './ScrollReveal';
+
 const About = () => {
   return (
     <section className="w-full px-4 py-24 bg-background relative overflow-hidden">
@@ -8,7 +10,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center relative z-10">
         
         {/* Left Side: Content */}
-        <div className="lg:col-span-6 flex flex-col space-y-8">
+        <ScrollReveal variant="left" className="lg:col-span-6 flex flex-col space-y-8">
           <div className="flex flex-col space-y-4">
             <h2 className="text-4xl lg:text-5xl font-display-lg text-on-surface uppercase tracking-tight leading-[1.1]">
               About <br />
@@ -43,10 +45,10 @@ const About = () => {
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </a>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Right Side: Visual Editorial Composition */}
-        <div className="lg:col-span-6 relative">
+        <ScrollReveal variant="right" className="lg:col-span-6 relative">
           <div className="relative w-full aspect-[4/5] lg:aspect-square rounded-2xl overflow-hidden shadow-2xl bg-surface-container border border-outline-variant/10 group">
             <img 
               alt="K D Machineries Automotive Bay & Workshop Equipment" 
@@ -70,7 +72,7 @@ const About = () => {
           
           {/* Accent decoration */}
           <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[radial-gradient(#39485a_2px,transparent_2px)] [background-size:12px_12px] opacity-40 -z-10 rounded-xl"></div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

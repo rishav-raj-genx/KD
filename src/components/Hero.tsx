@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
+import { ScrollReveal } from './ScrollReveal';
+
 const SLIDES = [
   {
     id: 1,
@@ -90,8 +92,8 @@ const Hero = () => {
       onTouchEnd={handleTouchEnd}
     >
       {/* Contained carousel module — matches content width */}
-      <div className="w-full max-w-7xl mx-auto px-4 pb-12">
-        <div className="relative w-full rounded-xl overflow-hidden bg-black flex flex-col shadow-2xl">
+      <ScrollReveal variant="up" className="w-full max-w-7xl mx-auto px-4 pb-12">
+        <div className="relative w-full rounded-xl overflow-hidden bg-background flex flex-col shadow-2xl">
           {/* Container with smooth padding around the image */}
           <div className="relative w-full p-6 md:p-10 lg:p-12">
             {/* Aspect ratio container for the image */}
@@ -136,7 +138,7 @@ const Hero = () => {
           </div>
 
           {/* Slide indicators - Placed BELOW the image on the same dark background */}
-          <div className="w-full flex items-center justify-center gap-2 pb-8 bg-black">
+          <div className="w-full flex items-center justify-center gap-2 pb-8 bg-background">
             {SLIDES.map((_, idx) => (
               <button
                 key={idx}
@@ -152,7 +154,7 @@ const Hero = () => {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
