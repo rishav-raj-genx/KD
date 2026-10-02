@@ -101,7 +101,7 @@ const Hero = () => {
               {SLIDES.map((slide, index) => (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                     index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
                   }`}
                   role="group"
@@ -112,7 +112,7 @@ const Hero = () => {
                   <img
                     src={slide.image}
                     alt={slide.alt}
-                    className="absolute inset-0 w-full h-full object-contain object-center select-none"
+                    className={`absolute inset-0 w-full h-full object-contain object-center select-none ${index === currentSlide ? 'animate-kenburns' : ''}`}
                     draggable={false}
                     loading={index === 0 ? 'eager' : 'lazy'}
                   />
@@ -123,14 +123,14 @@ const Hero = () => {
             {/* Navigation arrows (inside the padding, over the image area) */}
             <button
               onClick={prev}
-              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-highest/80 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-white hover:bg-kd-red hover:text-white hover:border-kd-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-highest/80 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-white hover:bg-kd-red hover:text-white hover:border-kd-red transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
               aria-label="Previous slide"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_left</span>
             </button>
             <button
               onClick={next}
-              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-highest/80 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-white hover:bg-kd-red hover:text-white hover:border-kd-red transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full bg-surface-container-highest/80 backdrop-blur-sm border border-outline-variant/20 flex items-center justify-center text-white hover:bg-kd-red hover:text-white hover:border-kd-red transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red"
               aria-label="Next slide"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_right</span>
@@ -143,9 +143,9 @@ const Hero = () => {
               <button
                 key={idx}
                 onClick={() => goTo(idx)}
-                className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red ${
+                className={`rounded-full transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-kd-red ${
                   currentSlide === idx
-                    ? 'w-8 h-2 bg-kd-red'
+                    ? 'w-8 h-2 bg-kd-red shadow-[0_0_8px_rgba(255,22,23,0.4)]'
                     : 'w-2 h-2 bg-surface-variant hover:bg-outline-variant/80'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

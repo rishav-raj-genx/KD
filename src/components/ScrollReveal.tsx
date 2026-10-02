@@ -59,8 +59,11 @@ export const ScrollReveal = ({
     return <div className={className}>{children}</div>;
   }
 
-  const baseStyles = 'transition-all duration-700 ease-out';
-  const delayStyle = delay ? { transitionDelay: `${delay}ms` } : {};
+  const baseStyles = 'transition-[transform,opacity] duration-700';
+  const transitionStyle: React.CSSProperties = {
+    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    ...(delay ? { transitionDelay: `${delay}ms` } : {}),
+  };
 
   const variants = {
     'up': 'opacity-0 translate-y-[30px]',
@@ -78,7 +81,7 @@ export const ScrollReveal = ({
     <div 
       ref={ref} 
       className={`${baseStyles} ${visibleState} ${className}`}
-      style={delayStyle}
+      style={transitionStyle}
     >
       {children}
     </div>

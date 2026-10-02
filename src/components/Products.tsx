@@ -104,7 +104,7 @@ const Products = () => {
                         <h3 className="text-sm font-bold text-on-surface group-hover:text-kd-red transition-colors line-clamp-2 pr-2">
                           {product.name}
                         </h3>
-                        <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red transition-colors shrink-0">arrow_forward</span>
+                        <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-kd-red group-hover:translate-x-1 transition-all duration-300 shrink-0">arrow_forward</span>
                       </div>
                     </a>
                   </ScrollReveal>

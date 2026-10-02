@@ -61,10 +61,15 @@ export default {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' }
+        },
+        kenburns: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.04)' },
         }
       },
       animation: {
-        marquee: 'marquee 25s linear infinite'
+        marquee: 'marquee 25s linear infinite',
+        kenburns: 'kenburns 5.5s ease-out forwards'
       },
       borderRadius: {
         DEFAULT: "0.125rem",

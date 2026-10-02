@@ -66,7 +66,7 @@ const Testimonials = () => {
               <p className="text-white/90 text-sm mb-8 leading-relaxed">
                 Need expert help? We're here to support, guide, and provide reliable solutions for your needs!
               </p>
-              <a href="/contact" className="px-6 py-3 bg-white text-black text-sm font-bold uppercase tracking-wide text-center transition-colors hover:bg-neutral-100 mt-auto rounded">
+              <a href="/contact" className="px-6 py-3 bg-white text-black text-sm font-bold uppercase tracking-wide text-center transition-all duration-300 hover:bg-neutral-100 hover:-translate-y-0.5 hover:shadow-lg mt-auto rounded">
                 Contact Now
               </a>
             </div>

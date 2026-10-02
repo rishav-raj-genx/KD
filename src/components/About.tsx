@@ -40,9 +40,9 @@ const About = () => {
           </div>
 
           <div>
-            <a href="#about" className="inline-flex items-center gap-3 px-8 py-3.5 rounded-lg bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright text-on-surface text-sm uppercase tracking-widest font-bold transition-all hover:-translate-y-0.5">
+            <a href="#about" className="group/cta inline-flex items-center gap-3 px-8 py-3.5 rounded-lg bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright text-on-surface text-sm uppercase tracking-widest font-bold transition-all duration-300 hover:-translate-y-0.5">
               <span>Read Our Full Story</span>
-              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover/cta:translate-x-1">arrow_forward</span>
             </a>
           </div>
         </ScrollReveal>
