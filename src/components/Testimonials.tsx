@@ -40,7 +40,7 @@ const Testimonials = () => {
             const variant = index === 0 ? 'left' : index === 2 ? 'right' : 'up';
             return (
               <ScrollReveal key={testimonial.id} variant={variant} delay={index * 100} className="h-full">
-                <div className="bg-surface-container-lowest border border-outline-variant/10 rounded-md p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
+                <div className="bg-surface-container-lowest border border-outline-variant/10 rounded-[12px] p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
                   <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-outline-variant/10 shrink-0">
                     <img 
                       src={testimonial.image} 
@@ -59,7 +59,7 @@ const Testimonials = () => {
 
           {/* CTA Box */}
           <ScrollReveal variant="right" delay={300} className="h-full">
-            <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-md">
+            <div className="bg-kd-red p-8 flex flex-col justify-center text-white h-full shadow-lg rounded-[12px]">
               <h3 className="text-2xl font-bold uppercase mb-4 leading-tight">
                 Do you need any<br />help?
               </h3>

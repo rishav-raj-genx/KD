@@ -81,7 +81,7 @@ const Products = () => {
                   >
                     <a 
                       href={`/product/${product.id}`} 
-                      className="group flex flex-col bg-background border border-outline-variant/10 rounded-md overflow-hidden p-4 transition-all duration-300 hover:border-kd-red h-full"
+                      className="group flex flex-col bg-background border border-outline-variant/10 rounded-[12px] overflow-hidden p-4 transition-all duration-300 hover:border-kd-red h-full"
                     >
                       {/* BRAND TAG - Above the image */}
                       <div className="mb-3">
@@ -91,11 +91,11 @@ const Products = () => {
                       </div>
 
                       {/* FULL PRODUCT IMAGE - Contained with padding */}
-                      <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden rounded-md mb-4">
+                      <div className="relative w-full aspect-[4/3] bg-white flex items-center justify-center overflow-hidden rounded-[10px] mb-4">
                         <img 
                           src="/image.png" 
                           alt={product.name} 
-                          className="w-full h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.02] group-hover:brightness-[1.02]"
+                          className="w-full h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.05] group-hover:brightness-[1.02]"
                         />
                       </div>
 
